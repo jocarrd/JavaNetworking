@@ -1,5 +1,6 @@
 package Parte1;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -16,7 +17,13 @@ public class Principal {
 		Scanner entrada = new Scanner(System.in);
 		System.out.println("Introduzca la URL del destino a descargar");
 		String r = entrada.nextLine();
-
+		File dir;
+		do {
+		System.out.println("Introduza el nombre del directorio donde desea guardarlo");
+		String path = entrada.nextLine();
+		 dir = new File(path);
+		}while(!dir.exists());
+		
 		try {
 			URL url = new URL(r);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -25,7 +32,11 @@ public class Principal {
 			
 			for(int i=0;i<3;i++) {
 				
-				Descargador d = new Descargador();
+				
+				Descargador d = new Descargador(r,dir,i*(content_length/3),i+1*(content_length/3));
+				System.out.println("Byte inicial :  "+(i*(content_length/3)));
+				System.out.println("Byte final :  "+(i+1*(content_length/3)));
+				
 				
 				pool.execute(d);
 			}
@@ -36,7 +47,7 @@ public class Principal {
 
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
