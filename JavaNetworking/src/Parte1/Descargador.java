@@ -40,10 +40,10 @@ public class Descargador implements Runnable {
 			
 			InputStream server = con.getInputStream();
 		
+			String [] nombre =u.getFile().split("/");
 			
 			
-			
-			RandomAccessFile sr = new RandomAccessFile(this.dir+"/prueba.jpg", "rw");
+			RandomAccessFile sr = new RandomAccessFile(this.dir+"/"+nombre[nombre.length-1], "rw");
 			sr.seek(inicial);
 
 			int c = 0;
