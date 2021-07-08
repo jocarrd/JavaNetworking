@@ -32,17 +32,29 @@ public class Principal {
 			
 			for(int i=0;i<3;i++) {
 				
+				Descargador d;
+				if(i==2) {
+					 d = new Descargador(r,dir,i*(content_length/3),content_length);
+					System.out.println("Byte inicial :  "+(i*(content_length/3)));
+					System.out.println("Byte final :  "+((i+1)*(content_length/3)));
+				}else {
+					 d = new Descargador(r,dir,i*(content_length/3),i+1*(content_length/3));
+					System.out.println("Byte inicial :  "+(i*(content_length/3)));
+					System.out.println("Byte final :  "+((i+1)*(content_length/3)));
+					
+				}
 				
-				Descargador d = new Descargador(r,dir,i*(content_length/3),i+1*(content_length/3));
-				System.out.println("Byte inicial :  "+(i*(content_length/3)));
-				System.out.println("Byte final :  "+(i+1*(content_length/3)));
-				
+				System.out.println("Total : "+content_length);
 				
 				pool.execute(d);
 			}
 			
 			
 
+			
+			
+			
+			pool.shutdown();
 		} catch (MalformedURLException e) {
 
 			e.printStackTrace();

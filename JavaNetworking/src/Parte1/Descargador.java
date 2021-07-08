@@ -1,6 +1,8 @@
 package Parte1;
 
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
@@ -31,9 +33,13 @@ public class Descargador implements Runnable {
 			con.setRequestMethod("GET");
 			String d = "bytes=" + this.inicial + "-" + this.fin;
 			con.addRequestProperty("Range", d);
+			
 			InputStream server = con.getInputStream();
-
-			RandomAccessFile sr = new RandomAccessFile(this.dir.getPath(), "rw");
+		//	DataOutputStream out = new DataOutputStream(new FileOutputStream(dir.getPath()+"/prueba"));
+			
+			
+			
+			RandomAccessFile sr = new RandomAccessFile(this.dir+"/prueba.jpg", "rw");
 			sr.seek(this.inicial);
 
 			int c = 0;
@@ -43,6 +49,7 @@ public class Descargador implements Runnable {
 				sr.write(g);
 			}
 
+			server.close();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,6 +57,7 @@ public class Descargador implements Runnable {
 
 			e.printStackTrace();
 		}
+		
 
 	}
 
