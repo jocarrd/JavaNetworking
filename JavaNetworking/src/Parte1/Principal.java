@@ -30,6 +30,7 @@ public class Principal {
 			URL url = new URL(r);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("HEAD");
+		
 			long content_length = con.getContentLengthLong();
 			
 			for(int i=0;i<3;i++) {
