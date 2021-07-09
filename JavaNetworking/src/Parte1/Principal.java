@@ -38,7 +38,7 @@ public class Principal {
 				Descargador d=null;
 				
 				if(i==0) {
-					 d = new Descargador(r,dir,0,content_length/3,countdown);
+					 d = new Descargador(r,dir,0,(content_length/3),countdown);
 					 System.out.println("Byte inicial :  "+0);
 						System.out.println("Byte final :  "+(content_length/3));
 				}
@@ -49,7 +49,7 @@ public class Principal {
 				}
 				
 				if(i==2) {
-					 d = new Descargador(r,dir,i*(content_length/3)+1,content_length,countdown);
+					 d = new Descargador(r,dir,i*(content_length/3)+1,content_length-1,countdown);
 					System.out.println("Byte inicial :  "+(i*(content_length/3)+1));
 					System.out.println("Byte final :  "+content_length);
 				}

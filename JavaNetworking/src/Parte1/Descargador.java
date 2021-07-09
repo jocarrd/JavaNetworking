@@ -49,8 +49,8 @@ public class Descargador implements Runnable {
 			int c = 0;
 			byte g[] = new byte[1000];
 
-			while ((c = server.read(g)) != -1) {
-				sr.write(g);
+			while ((c = server.read(g,0,g.length)) != -1) {
+				sr.write(g,0,c);
 			}
 			this.countdown.countDown();
 			server.close();
